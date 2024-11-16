@@ -2,7 +2,7 @@
 
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>
-#include <QX11Info>
+#include <qt5/QtX11Extras/QX11Info>
 #endif
 
 #ifdef Q_OS_WIN

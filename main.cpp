@@ -7,7 +7,7 @@
 #include <QTranslator>
 #include <QQuickWindow>
 #include <QFontDatabase>
-#include "QBreakpadHandler.h"
+// #include "QBreakpadHandler.h"
 #include "./pv/controller/session_controller.h"
 #include "./pv/controller/session_error.h"
 #include "./pv/controller/setting.h"
@@ -75,9 +75,9 @@ int main(int argc, char* argv[])
     app.setApplicationName("ATK-LogicView");
     app.setStyle(new MenuStyle());
     QString tempDir=QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-#if defined (QT_NO_DEBUG) && defined (Q_CC_MSVC)
-    QBreakpadInstance.setDumpPath(tempDir+"/crash");
-#endif
+// #if defined (QT_NO_DEBUG) && defined (Q_CC_MSVC)
+//     QBreakpadInstance.setDumpPath(tempDir+"/crash");
+// #endif
     //载入全局字体
     QFont font = app.font();
     int fontId = QFontDatabase::addApplicationFont(":/resource/SourceHanSansCN-Regular.otf");

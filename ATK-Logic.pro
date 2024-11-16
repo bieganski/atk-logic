@@ -14,6 +14,15 @@ DEFINES += APP_VERSION_NUM=1066
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += FPGA_MIN_VERSION_NUM=115
 
+
+# unix:LIBS += -lX11.so.6 -lusb-1.0 -lQt5X11Extras -L/home/mateusz/github/atk_libsigrokdecode/.libs/ -l:libsigrokdecode.a -l:libglib-2.0.so.0 -l:libpython3.12.so
+
+
+unix:LIBS += -lX11 -lusb-1.0 -lQt5X11Extras -L. -l:libsigrokdecode.a -lglib-2.0 -lpython3.12
+# QMAKE_LFLAGS += -l:libX11.so.6 -lusb-1.0 -Wl,-O1 -lQt5X11Extras -L/home/mateusz/github/atk_libsigrokdecode/.libs/ -l:libsigrokdecode.a -l:libglib-2.0.so.0 -l:libpython3.12.so
+QMAKE_LFLAGS += -Wl,-O1
+
+
 QMAKE_TARGET_COMPANY ="ALIENTEK"
 QMAKE_TARGET_DESCRIPTION = "ATK-LogicView"
 QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2022. ALIENTEK All Rights Reserved."
@@ -71,7 +80,8 @@ SOURCES += \
         pv/usb/usb_control.cpp \
         pv/usb/usb_hotplug.cpp \
         pv/usb/usb_server.cpp \
-        pv/utils/qtlockedfile/qtlockedfile.cpp
+        pv/utils/qtlockedfile/qtlockedfile.cpp \
+        pv/utils/qtlockedfile/qtlockedfile_unix.cpp
 
 HEADERS += \
         lib/include/atk_decoder.h \
@@ -132,7 +142,7 @@ TRANSLATIONS += \
 
 
 CONFIG += resources_big
-CONFIG += lrelease
+# CONFIG += lrelease
 CONFIG += embed_translations
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -144,4 +154,3 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
