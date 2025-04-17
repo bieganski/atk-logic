@@ -23,6 +23,14 @@ RUN apt-get install -y \
     qml-module-qt-labs-platform \
     python3-dev
 
+# Below ones are not necessary for compilation,
+# but are required to run ATK-logic binary from inside Docker container.
+RUN apt-get install -y \
+    qml-module-qtquick-dialogs \
+    qml-module-qtquick-controls \
+    qml-module-qtquick-controls2
+
+
 RUN git clone https://github.com/bieganski/atk-logic
 
 WORKDIR atk-logic
